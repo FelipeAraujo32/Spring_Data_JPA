@@ -10,11 +10,12 @@ import com.data.data_spring.service.CrudProfessorService;
 
 @SpringBootApplication
 public class DataSpringApplication implements CommandLineRunner {
-	private CrudProfessorService crudProfessorService;
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DataSpringApplication.class, args);
 	}
+
+	private CrudProfessorService crudProfessorService;
 
 	// Ponto de injeção  para da class CrudProfessorService e anotação @Service
 	public DataSpringApplication(CrudProfessorService crudProfessorService){

@@ -68,17 +68,17 @@ public class CrudProfessorService {
         Long id = scanner.nextLong();
 
         // Optional checagem se a informação existe
-        Optional<Professor> idOptional = this.professorRepository.findById(id);
+        Optional<Professor> idOptionalProfessor = this.professorRepository.findById(id);
 
         //Retorna o ID se for existente 
-        if (idOptional.isPresent()){ 
+        if (idOptionalProfessor.isPresent()){ 
             System.out.print("Digite o nome do professor: ");
             String nome = scanner.next();
 
             System.out.print("Digite o prontuario do professor: ");
             String prontuario = scanner.next();
 
-            Professor professor = idOptional.get();
+            Professor professor = idOptionalProfessor.get();
             professor.setNome(nome);
             professor.setProntuario(prontuario);
             professorRepository.save(professor); //Salva o registro no Banco de Dados
