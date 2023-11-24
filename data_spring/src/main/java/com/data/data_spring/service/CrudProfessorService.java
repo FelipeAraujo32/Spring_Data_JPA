@@ -5,8 +5,11 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
+import com.data.data_spring.entities.Disciplina;
 import com.data.data_spring.entities.Professor;
 import com.data.data_spring.repository.ProfessorRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class CrudProfessorService {
@@ -17,6 +20,7 @@ public class CrudProfessorService {
         this.professorRepository = professorRepository;
     }
 
+    @Transactional
     public void menu(Scanner scanner){
         Boolean isTrue = true;
 
@@ -25,8 +29,9 @@ public class CrudProfessorService {
             System.out.println("0 - Voltar ao menu anterior");
             System.out.println("1 - Cadastrar novo Professor");
             System.out.println("2 - Atualizar um Professor");
-            System.out.println("3 - Visualizartodos os Professor");
+            System.out.println("3 - Visualizar todos os Professor");
             System.out.println("4 - Deletar um Professor");
+            System.out.println("5 - Visualizar um Professor");
 
             int opcao = scanner.nextInt();
 
@@ -42,7 +47,10 @@ public class CrudProfessorService {
                     break;
                 case 4:
                     this.deletar(scanner);
-                    break;    
+                    break; 
+                case 5:
+                    this.visualizarProfessor(scanner);
+                    break;   
                 default:
                     isTrue = false;
                     break;
@@ -103,5 +111,27 @@ public class CrudProfessorService {
         Long id = scanner.nextLong();
         this.professorRepository.deleteById(id);
         System.out.println("Professor Deletado!!!\n");
+    }
+
+    @Transactional
+    private void visualizarProfessor(Scanner scanner){
+        System.out.println("Id do Professor: ");
+        Long id =scanner.nextLong();
+
+        Optional<Professor> idOptionalProfessor = professorRepository.findById(id);
+        if (idOptionalProfessor.isPresent()){
+            Professor professor = idOptionalProfessor.get();
+
+            System.out.println("ID: " +  professor.getId());
+            System.out.println("Nome: " +professor.getNome());
+            System.out.println("Prontuario: " + professor.getProntuario());
+            System.out.println("Discplina: [");
+            for (Disciplina disciplina : professor.getDisciplinas()){
+                System.out.println("\tId: " + professor.getId());
+                System.err.println("\tNome: " + disciplina.getNome());
+                System.out.println("\tSemestre: " + disciplina.getSemestre());
+            }
+                System.out.println("]\n}");
+        }
     }
 }

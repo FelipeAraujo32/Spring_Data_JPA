@@ -29,7 +29,7 @@ public class CrudDisciplinaService {
             System.out.println("1 - Cadastrar nova Disciplina");
             System.out.println("2 - Atualizar uma Discplina");
             System.out.println("3 - Visualizar toodas Disciplinas");
-            System.out.println("4 - Deletar uma Discplina");
+            System.out.println("4 - Deletar uma Discplina\n");
 
             int opcao = scanner.nextInt();
 
@@ -41,10 +41,10 @@ public class CrudDisciplinaService {
                     atualizar(scanner);
                     break;
                 case 3:
-                    ///
+                    visualizar();
                     break;
                 case 4:
-                    ///
+                    delatar(scanner);
                     break;
                 default:
                     isTrue = false;
@@ -73,7 +73,7 @@ public class CrudDisciplinaService {
             System.out.println("Salvo com Sucesso!!!");
         }
         else{
-            System.out.println("Professor ID " + professorId + "inválido");
+            System.out.println("Professor ID " + professorId + " inválido");
         }
     }
 
@@ -106,11 +106,27 @@ public class CrudDisciplinaService {
                 System.out.println("Atualizado com Sucesso!!!");
             }
             else{
-            System.out.println("Professor ID " + professorId + "inválido");
+            System.out.println("Professor ID " + professorId + " inválido");
             }
         }
         else{
-            System.out.println("O id da disciplina informado: " + id + "é inválido\n");
+            System.out.println("O id da disciplina informado: " + id + " é inválido\n");
         }
+    }
+
+    private void visualizar(){
+        Iterable<Disciplina> disciplinas = this.disciplinaRepository.findAll();
+        for (Disciplina disciplina : disciplinas){
+            System.out.println(disciplina);
+        }
+        System.out.println();
+    }
+
+    private void delatar(Scanner scanner){
+        System.out.println("Id:");
+        long id = scanner.nextLong();
+        this.disciplinaRepository.deleteById(id); // Exception se não encontrar o ID
+        System.out.println("Disciplina Deletada\n");
+
     }
 }

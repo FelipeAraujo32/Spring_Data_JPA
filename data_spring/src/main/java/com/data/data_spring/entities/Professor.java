@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +23,7 @@ public class Professor {
     @Column(nullable = false, unique = true)
     private String prontuario;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", fetch = FetchType.LAZY)
     private List<Disciplina> disciplinas;
 
     @Deprecated // Utilizado por bibliotecas externas
@@ -57,9 +58,21 @@ public class Professor {
         this.prontuario = prontuario;
     }
 
+    public List<Disciplina> getDisciplinas(){
+        return disciplinas;
+    }
+
+    public void setDisciplina(List<Disciplina> disciplinas){
+        this.disciplinas = disciplinas;
+    }
+
     @Override
     public String toString() {
-        return "Professor [id=" + id + ", nome=" + nome + ", prontuario=" + prontuario + "]";
+        return "Professor{" +
+        "id=" + id + 
+        ", nome=" + nome + '\'' +
+        ", prontuario=" + prontuario + '\'' +
+        '}';
     }
     
     
