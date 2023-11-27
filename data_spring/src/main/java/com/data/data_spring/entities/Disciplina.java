@@ -72,9 +72,19 @@ public class Disciplina {
         this.professor = professor;
     }
 
+    public List<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
     @Override
     public String toString() {
-        return "Disciplina [id=" + id + ", nome=" + nome + ", semestre=" + semestre + ", professor=" + professor + "]";
+        return "Disciplina [id=" + id + ", nome=" + nome + ", semestre=" + semestre + ", professor=" + professor +
+        ", alunos=" + alunos +
+        ']';
     }
 
     

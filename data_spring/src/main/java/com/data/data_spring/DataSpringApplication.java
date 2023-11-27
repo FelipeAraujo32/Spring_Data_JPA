@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.data.data_spring.service.CrudAlunoService;
 import com.data.data_spring.service.CrudDisciplinaService;
 import com.data.data_spring.service.CrudProfessorService;
 
@@ -18,11 +19,13 @@ public class DataSpringApplication implements CommandLineRunner {
 
 	private CrudProfessorService crudProfessorService;
 	private CrudDisciplinaService crudDisciplinaService;
+	private CrudAlunoService crudAlunoService;
 
 	// Ponto de injeção  para da class CrudProfessorService e anotação @Service
-	public DataSpringApplication(CrudProfessorService crudProfessorService, CrudDisciplinaService crudDisciplinaService){
+	public DataSpringApplication(CrudProfessorService crudProfessorService, CrudDisciplinaService crudDisciplinaService, CrudAlunoService crudAlunoService){
 		this.crudProfessorService = crudProfessorService;
 		this.crudDisciplinaService = crudDisciplinaService;
+		this.crudAlunoService = crudAlunoService;
 	}
 
 	@Override
@@ -35,6 +38,7 @@ public class DataSpringApplication implements CommandLineRunner {
 			System.out.println("0 - Sair");
 			System.out.println("1 - Professor");
 			System.out.println("2 - Disciplina");
+			System.out.println("3 - Alunos");
 
 			int opcao = scanner.nextInt();
 			
@@ -45,6 +49,8 @@ public class DataSpringApplication implements CommandLineRunner {
 				case 2:
 					this.crudDisciplinaService.menu(scanner);
 					break;
+				case 3:
+				this.crudAlunoService.menu(scanner);
 				default:
 					isTrue = false;
 					break;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,10 +23,10 @@ public class Aluno {
     @Column(nullable = false)
     private Integer idade;
 
-    @ManyToMany(mappedBy = "alunos")
+    @ManyToMany(mappedBy = "alunos", fetch = FetchType.LAZY)
     List<Disciplina> disciplinas;
 
-    @Deprecated
+    
     public Aluno() {
     }
 
@@ -68,6 +69,16 @@ public class Aluno {
         this.disciplinas = disciplinas;
     }
 
+    @Override
+    public String toString() {
+        return "Aluno{" +
+        "id=" + id + 
+        ", nome='" + nome + '\'' +
+        ", idade=" + idade +
+         '}';
+    }
+
+    
   
 }
 

@@ -1,12 +1,16 @@
 package com.data.data_spring.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
+import com.data.data_spring.entities.Aluno;
 import com.data.data_spring.entities.Disciplina;
 import com.data.data_spring.entities.Professor;
+import com.data.data_spring.repository.AlunoRepository;
 import com.data.data_spring.repository.DisciplinaRepository;
 import com.data.data_spring.repository.ProfessorRepository;
 
@@ -14,10 +18,12 @@ import com.data.data_spring.repository.ProfessorRepository;
 public class CrudDisciplinaService {
     private DisciplinaRepository disciplinaRepository;
     private ProfessorRepository professorRepository;
+    private AlunoRepository alunoRepository;
 
-    public CrudDisciplinaService(DisciplinaRepository disciplinaRepository, ProfessorRepository professorRepository){
+    public CrudDisciplinaService(DisciplinaRepository disciplinaRepository, ProfessorRepository professorRepository, AlunoRepository alunoRepository){
     this.disciplinaRepository = disciplinaRepository;
     this.professorRepository = professorRepository;
+    this.alunoRepository = alunoRepository;
     }
 
     public void menu(Scanner scanner){
@@ -46,6 +52,9 @@ public class CrudDisciplinaService {
                 case 4:
                     delatar(scanner);
                     break;
+                case 5:
+                    matricularAlunos(scanner);
+                        break;
                 default:
                     isTrue = false;
                     break;
@@ -68,7 +77,11 @@ public class CrudDisciplinaService {
 
         if(idOptionalProfessor.isPresent()){
             Professor professor = idOptionalProfessor.get();
+
+            List<Aluno> alunos = this.matricular(scanner);
+
             Disciplina disciplina = new Disciplina(nome, semestre, professor);
+            disciplina.setAlunos(alunos);
             disciplinaRepository.save(disciplina);
             System.out.println("Salvo com Sucesso!!!");
         }
@@ -98,9 +111,12 @@ public class CrudDisciplinaService {
             if(idOptionalProfessor.isPresent()){
                 Professor professor = idOptionalProfessor.get();
 
+                List<Aluno> alunos = this.matricular(scanner);
+
                 disciplina.setNome(nome);
                 disciplina.setSemestre(semestre);
                 disciplina.setProfessor(professor);
+                disciplina.setAlunos(alunos);
 
                 disciplinaRepository.save(disciplina);
                 System.out.println("Atualizado com Sucesso!!!");
@@ -128,5 +144,46 @@ public class CrudDisciplinaService {
         this.disciplinaRepository.deleteById(id); // Exception se não encontrar o ID
         System.out.println("Disciplina Deletada\n");
 
+    }
+    
+    private List<Aluno> matricular(Scanner scanner){
+        Boolean isTrue = true;
+        List<Aluno> alunos = new ArrayList<Aluno>();
+
+        while(isTrue){
+            System.out.println("ID do aluno a ser matriculado (Digite 0 para sair)");
+            Long alunoId = scanner.nextLong();
+
+            if(alunoId > 0){
+                System.out.println("alunoId: " + alunoId);
+                Optional<Aluno> optionalAluno = this.alunoRepository.findById(alunoId);
+                if(optionalAluno.isPresent()){
+                    alunos.add(optionalAluno.get());
+                }
+                else{
+                    System.out.println("Nenhum aluno possui id " + alunoId + "!");
+                }
+            }
+            else{isTrue = false;}
+        }
+        return alunos;
+    }
+
+    private void matricularAlunos(Scanner scanner){
+        System.out.println("Qual o id da disciplina para matricular alunos: ");
+        Long id = scanner.nextLong();
+
+        Optional<Disciplina> optionalDisciplina = this.disciplinaRepository.findById(id);
+
+        if(optionalDisciplina.isPresent()){
+            Disciplina disciplina = optionalDisciplina.get();
+            List<Aluno> novosAlunos = this.matricular(scanner);
+            disciplina.getAlunos().addAll(novosAlunos);
+            this.disciplinaRepository.save(disciplina);
+
+        }
+        else{
+            System.out.println("O id da disciplina informado " + id + "é inválido\n");
+        }
     }
 }

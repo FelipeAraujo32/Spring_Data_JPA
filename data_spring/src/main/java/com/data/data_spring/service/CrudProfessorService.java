@@ -89,7 +89,7 @@ public class CrudProfessorService {
             Professor professor = idOptionalProfessor.get();
             professor.setNome(nome);
             professor.setProntuario(prontuario);
-            professorRepository.save(professor); //Salva o registro no Banco de Dados
+            this.professorRepository.save(professor); //Salva o registro no Banco de Dados
 
             System.out.println("Professor atualizado com sucesso!!!\n");
         }
@@ -126,12 +126,15 @@ public class CrudProfessorService {
             System.out.println("Nome: " +professor.getNome());
             System.out.println("Prontuario: " + professor.getProntuario());
             System.out.println("Discplina: [");
+
+            if(professor.getDisciplinas() != null){
             for (Disciplina disciplina : professor.getDisciplinas()){
                 System.out.println("\tId: " + professor.getId());
                 System.err.println("\tNome: " + disciplina.getNome());
                 System.out.println("\tSemestre: " + disciplina.getSemestre());
             }
-                System.out.println("]\n}");
+        }  
+            System.out.println("]\n}");
         }
     }
 }
