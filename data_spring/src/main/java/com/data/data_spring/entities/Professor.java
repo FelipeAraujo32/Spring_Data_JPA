@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.Table;
 
 @Entity
@@ -64,6 +65,14 @@ public class Professor {
 
     public void setDisciplina(List<Disciplina> disciplinas){
         this.disciplinas = disciplinas;
+    }
+
+    @PreRemove // ON REMOVE SET NULL
+    public void attDisciplina(){
+        System.out.println("Atualizando professor da disciplina");
+        for (Disciplina disciplina: this.getDisciplinas()){
+            disciplina.setProfessor(null);
+        }
     }
 
     @Override
