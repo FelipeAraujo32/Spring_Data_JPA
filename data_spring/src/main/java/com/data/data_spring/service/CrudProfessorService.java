@@ -129,7 +129,7 @@ public class CrudProfessorService {
 
             if(professor.getDisciplinas() != null){
             for (Disciplina disciplina : professor.getDisciplinas()){
-                System.out.println("\tId: " + professor.getId());
+                System.out.println("\tId: " + disciplina.getId());
                 System.err.println("\tNome: " + disciplina.getNome());
                 System.out.println("\tSemestre: " + disciplina.getSemestre());
             }
