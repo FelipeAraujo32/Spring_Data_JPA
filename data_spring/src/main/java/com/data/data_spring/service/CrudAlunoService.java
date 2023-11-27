@@ -30,7 +30,7 @@ public class CrudAlunoService {
             System.out.println("1 - Cadastrar novo Aluno");
             System.out.println("2 - Atualizar um Aluno");
             System.out.println("3 - Visualizar todos os Alunos");
-            System.out.println("4 - Deletar uma Discplina\n");
+            System.out.println("4 - Deletar um aluno");
             System.out.println("5 - Visualizar um Aluno");
 
             int opcao = scanner.nextInt();
@@ -50,6 +50,9 @@ public class CrudAlunoService {
                     break;
                 case 5:
                     this.visualizarAluno(scanner);
+                    break;
+                default:
+                    isTrue = false;
                     break;
 
             }

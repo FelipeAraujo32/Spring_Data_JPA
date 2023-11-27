@@ -35,7 +35,8 @@ public class CrudDisciplinaService {
             System.out.println("1 - Cadastrar nova Disciplina");
             System.out.println("2 - Atualizar uma Discplina");
             System.out.println("3 - Visualizar todas Disciplinas");
-            System.out.println("4 - Deletar uma Discplina\n");
+            System.out.println("4 - Deletar uma Discplina");
+            System.out.println("5 - Matricular Alunos\n");
 
             int opcao = scanner.nextInt();
 

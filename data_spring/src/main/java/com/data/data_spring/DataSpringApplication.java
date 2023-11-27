@@ -50,7 +50,8 @@ public class DataSpringApplication implements CommandLineRunner {
 					this.crudDisciplinaService.menu(scanner);
 					break;
 				case 3:
-				this.crudAlunoService.menu(scanner);
+					this.crudAlunoService.menu(scanner);
+					break;
 				default:
 					isTrue = false;
 					break;
