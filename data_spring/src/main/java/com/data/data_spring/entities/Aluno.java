@@ -1,6 +1,7 @@
 package com.data.data_spring.entities;
 
-import java.util.List;
+
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,13 +25,13 @@ public class Aluno {
     private Integer idade;
 
     @ManyToMany(mappedBy = "alunos", fetch = FetchType.LAZY)
-    List<Disciplina> disciplinas;
+    private Set<Disciplina> disciplinas;
 
     
     public Aluno() {
     }
 
-    public Aluno(Long id, String nome, Integer idade, List<Disciplina> disciplinas) {
+    public Aluno(Long id, String nome, Integer idade, Set<Disciplina> disciplinas) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -61,11 +62,11 @@ public class Aluno {
         this.idade = idade;
     }
 
-    public List<Disciplina> getDisciplinas() {
+    public Set<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
-    public void setDisciplinas(List<Disciplina> disciplinas) {
+    public void setDisciplinas(Set<Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
     }
 

@@ -1,9 +1,9 @@
 package com.data.data_spring.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -83,7 +83,7 @@ public class CrudDisciplinaService {
         if (idOptionalProfessor.isPresent()) {
             Professor professor = idOptionalProfessor.get();
 
-            List<Aluno> alunos = this.matricular(scanner);
+            Set<Aluno> alunos = this.matricular(scanner);
 
             Disciplina disciplina = new Disciplina(nome, semestre, professor);
             disciplina.setAlunos(alunos);
@@ -115,7 +115,7 @@ public class CrudDisciplinaService {
             if (idOptionalProfessor.isPresent()) {
                 Professor professor = idOptionalProfessor.get();
 
-                List<Aluno> alunos = this.matricular(scanner);
+                Set<Aluno> alunos = this.matricular(scanner);
 
                 disciplina.setNome(nome);
                 disciplina.setSemestre(semestre);
@@ -147,10 +147,10 @@ public class CrudDisciplinaService {
         System.out.println("Disciplina Deletada\n");
 
     }
-
-    private List<Aluno> matricular(Scanner scanner) {
+    
+    private Set<Aluno> matricular(Scanner scanner) {
         Boolean isTrue = true;
-        List<Aluno> alunos = new ArrayList<Aluno>();
+        Set<Aluno> alunos = new HashSet<>();
 
         while (isTrue) {
             System.out.println("Id do aluno a ser matriculado (Digite 0 para sair)");
@@ -180,7 +180,7 @@ public class CrudDisciplinaService {
 
         if (optionalDisciplina.isPresent()) {
             Disciplina disciplina = optionalDisciplina.get();
-            List<Aluno> novosAlunos = this.matricular(scanner);
+            Set<Aluno> novosAlunos = this.matricular(scanner);
             disciplina.getAlunos().addAll(novosAlunos);
             this.disciplinaRepository.save(disciplina);
 
