@@ -34,11 +34,12 @@ public class DataSpringApplication implements CommandLineRunner {
 		Scanner scanner = new Scanner(System.in);
 
 		while(isTrue){
-			System.out.println("\nQual entidade você deseja interagir?");
+			System.out.println("Oque deseja fazer?");
 			System.out.println("0 - Sair");
 			System.out.println("1 - Professor");
 			System.out.println("2 - Disciplina");
 			System.out.println("3 - Alunos");
+			System.out.println("4 - Relatório");
 
 			int opcao = scanner.nextInt();
 			
