@@ -40,7 +40,7 @@ public class CrudProfessorService {
                     this.cadastrar(scanner);
                     break;
                 case 2:
-                    this.autualizar(scanner);
+                    this.atualizar(scanner);
                     break;
                 case 3:
                     this.visualizar();
@@ -71,7 +71,7 @@ public class CrudProfessorService {
         System.out.println("Professor salvo com sucesso!!!\n");
 	}
     
-    private void autualizar(Scanner scanner){
+    private void atualizar(Scanner scanner){
         System.out.println("Digite o Id do Professor a ser atualziado: ");
         Long id = scanner.nextLong();
 
