@@ -1,6 +1,6 @@
 # Sistema de Gestão Escolar - Spring Data 
 
-Este projeto é uma aplicação Java que utiliza o framework Spring Data em conjunto com JPA para criar um sistema de gestão escolar básico. O sistema gerencia informações sobre alunos, professores e disciplinas em um ambiente escolar. Esse projeto foi implementado o código diretamente pelo CommandLineRunner.   
+Este projeto de demonstração, é uma aplicação Java que utiliza o framework Spring Data em conjunto com JPA para criar um sistema de gestão escolar básico. O sistema gerencia informações sobre alunos, professores e disciplinas em um ambiente escolar. Esse projeto foi implementado o código diretamente pelo CommandLineRunner.   
 
 ## Tecnologias Utilizadas
 
