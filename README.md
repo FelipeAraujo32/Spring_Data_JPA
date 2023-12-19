@@ -39,4 +39,4 @@ O programa abrirá no próprio terminal de execução, temos opções no de Menu
 - Professor: Cadastrar - Atualizar - Visualizar - Deletar - VisualizarProfessor
 - Disciplina: Cadastrar - Atualizar - Visualizar - Deletar - matricularAlunos
 
-  ### Esperamos que este README ajude na compreensão e utilização do projeto. Se houver dúvidas ou problemas, sinta-se à vontade para acrescentar.
+Esperamos que este README ajude na compreensão e utilização do projeto. Se houver dúvidas ou problemas, sinta-se à vontade para acrescentar.
