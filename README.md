@@ -22,17 +22,17 @@ O projeto está estruturado da seguinte forma:
 
 ## Configuração do Banco de Dados
 Certifique-se de ter um servidor MySQL em execução. Você pode configurar as propriedades de conexão com o banco de dados no arquivo `application.properties`:
-~~~Propeties
+```Propeties
 spring.datasource.url=jdbc:mysql://localhost:3306/seu_banco_de_dados
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
-~~~
+```
 
 ## Executando o Projeto
 Certifique-se de ter o Maven instalado. Na raiz do projeto, execute o seguinte comando:
-~~~
+```mvn
 mvn spring-boot:run
-~~~
+```
 
 O programa abrirá no próprio terminal de execução, temos opções no de Menu.
 - Aluno: Cadastrar - Atualizar - Visualizar - Deletar - VisualizarAluno
